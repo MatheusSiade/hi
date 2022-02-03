@@ -16,7 +16,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main} >
-        <CheckboxForm disableCache/>
+        <CheckboxForm />
       </main>
     </div>
   )
