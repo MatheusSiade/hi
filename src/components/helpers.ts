@@ -79,3 +79,27 @@ export const toggleValues = (itemArr: CheckItemType[], check: IndeterminateCheck
   )
 }
 
+const generateNew = (itemArr: CheckItemType[], pathToFollow: number[], check: IndeterminateCheckbox): { newArr: CheckItemType[], childrenState: IndeterminateCheckbox } => {
+  let checkedChildren = 0;
+  let newData = {
+    newArr: itemArr[pathToFollow[0]].children,
+    childrenState: pathToFollow.length === 1 ? check : itemArr[pathToFollow[0]].check
+  };
+  if (itemArr[pathToFollow[0]].children.length !== 0) {
+    newData = generateNew(itemArr[pathToFollow[0]].children, pathToFollow.slice(1), check)
+  }
+
+  if (newData.childrenState === "true") checkedChildren++; else if (newData.childrenState === "indeterminate") checkedChildren += 0.5
+
+  const arr: CheckItemType[] = [
+    ...itemArr,
+    {
+      ...itemArr[pathToFollow[0]],
+      children: pathToFollow.length === 1 ? toggleValues(itemArr[pathToFollow[0]].children, check) : newData.newArr
+    }
+  ]
+  return {
+    newArr: arr,
+    childrenState: itemArr.length > 0 ? (checkedChildren === itemArr.length ? "true" : (checkedChildren > 0 ? "indeterminate" : "false")) : "false"
+  }
+}

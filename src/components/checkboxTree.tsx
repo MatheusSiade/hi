@@ -7,9 +7,11 @@ interface CheckboxTreeProps {
   items: CheckItemType[];
 
   setChildren?(children: any): void;
+
+  deps: number[]
 }
 
-const CheckboxTree: React.FC<CheckboxTreeProps> = ({items, setChildren, }) => {
+const CheckboxTree: React.FC<CheckboxTreeProps> = ({items, setChildren, deps}) => {
 
   return <React.Fragment>
     {items.map((item, i) => {
@@ -33,7 +35,8 @@ const CheckboxTree: React.FC<CheckboxTreeProps> = ({items, setChildren, }) => {
           <label className={styles.container}>
             <Checkbox
               setCheck={(check: any) => {
-                 setChildren ? setChildren({
+                console.log([...deps, i])
+                setChildren ? setChildren({
                   ...item,
                   children: [],
                   check: check
@@ -51,7 +54,7 @@ const CheckboxTree: React.FC<CheckboxTreeProps> = ({items, setChildren, }) => {
             <CheckboxTree items={item.children} setChildren={((i) => setChildren ? setChildren({
               ...item,
               children: [i]
-            }) : undefined)} />}</div>
+            }) : undefined)} deps={[...deps, i]}/>}</div>
     })}
   </React.Fragment>
 }

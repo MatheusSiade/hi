@@ -27,7 +27,7 @@ const CheckboxForm: React.FC = ({}) => {
   }
 
   return <form>
-      <CheckboxTree items={items} setChildren={handleSetChildren}/>
+      <CheckboxTree items={items} setChildren={handleSetChildren} deps={[]}/>
   </form>
 
 }
