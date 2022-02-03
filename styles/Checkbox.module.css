@@ -3,7 +3,8 @@
     width: 100%;
     cursor: pointer;
     color: #0052ba;
-    padding-left: 25px
+    padding-left: 25px;
+    font-family: 'Share Tech Mono', monospace;
 }
 
 .container input {
@@ -18,7 +19,7 @@
     border: 1px black solid;
     border-radius: 2px;
     position: absolute;
-    top: 4px;
+    top: 2px;
     left: 4px;
     height: 13px;
     width: 13px;
@@ -78,7 +79,8 @@
 }
 
 .checkboxDiv {
-    display: flex;;
+    display: flex;
+    align-items: center;
     height: 22px;
 }
 

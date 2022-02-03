@@ -44,7 +44,6 @@ const CheckboxTree: React.FC<CheckboxTreeProps> = ({items, setChildren, deps}) =
             />
             <span className={styles.checkmark}/>
             {item.name}
-
           </label>
         </div>
         {item.children.length !== 0 &&
