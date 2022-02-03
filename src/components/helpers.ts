@@ -4,7 +4,7 @@ export interface CheckItemType {
   children: CheckItemType[];
   level: number;
   check: IndeterminateCheckbox;
-}
+};
 
 export interface CheckItemData {
   id: string;

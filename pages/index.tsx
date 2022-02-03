@@ -15,8 +15,8 @@ const Home: NextPage = () => {
         <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
       </Head>
 
-      <main className={styles.main}>
-        <CheckboxForm/>
+      <main className={styles.main} >
+        <CheckboxForm disableCache/>
       </main>
     </div>
   )

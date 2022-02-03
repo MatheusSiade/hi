@@ -1,20 +1,21 @@
 import React, {useEffect, useState} from "react";
 import importData from "../data/data.json";
-import {CheckItemType, convertObjectToArray, setValues, generateNewItems, IndeterminateCheckbox} from "./helpers";
+import {CheckItemType, convertObjectToArray, IndeterminateCheckbox, setValues} from "./helpers";
 import CheckboxTree from "./checkboxTree";
 
-
-const CheckboxForm: React.FC = ({}) => {
+interface CheckboxFormProps {
+  disableCache?: boolean
+}
+const CheckboxForm: React.FC<CheckboxFormProps> = ({disableCache}) => {
   let data: CheckItemType[];
   const [items, setItems] = useState<CheckItemType[]>([]);
 
   useEffect(() => {
     const storedData = localStorage.getItem("checkboxData")
-    if (storedData !== null) {
+    if (storedData !== null && !disableCache) {
       data = JSON.parse(storedData);
     } else data = convertObjectToArray(importData);
     setItems(data);
-    console.log(data)
   }, [])
 
   useEffect(() => {
@@ -25,9 +26,11 @@ const CheckboxForm: React.FC = ({}) => {
     setItems(setValues(items, pathToFollow, check).newArr)
   }
 
-  return <form>
-      <CheckboxTree items={items} setChildren={handleSetChildrenNew} deps={[]} />
-  </form>
+  return <div>
+    <form>
+      <CheckboxTree items={items} setChildren={handleSetChildrenNew} deps={[]}/>
+    </form>
+  </div>
 
 }
 export default CheckboxForm;

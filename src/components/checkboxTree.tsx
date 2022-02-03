@@ -21,7 +21,7 @@ const CheckboxTree: React.FC<CheckboxTreeProps> = ({items, setChildren, deps}) =
         if (on) setHover(true)
         else setHover(false)
       }
-      return <div className={styles.innerTreeDiv} style={{
+      return <div className={styles.innerTreeDiv}  style={{
         backgroundColor: hover ? "#b4b4ff" : backgroundColor,
       }} key={item.id} onMouseEnter={() => toggleBackgroundHover(true)}
                   onMouseLeave={() => toggleBackgroundHover(false)}>
@@ -41,6 +41,7 @@ const CheckboxTree: React.FC<CheckboxTreeProps> = ({items, setChildren, deps}) =
               }}
               name={item.name}
               check={item.check}
+              testId={item.id}
             />
             <span className={styles.checkmark}/>
             {item.name}
