@@ -1,0 +1,88 @@
+.container {
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+    color: #0052ba;
+    padding-left: 25px
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    border: 1px black solid;
+    border-radius: 2px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    height: 13px;
+    width: 13px;
+    background-color: #fff;
+}
+
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.container input:checked ~ .checkmark {
+    background-color: #005cda;
+}
+
+.container input:indeterminate ~ .checkmark {
+    background-color: #fff;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    display: block;
+    left: 3px;
+    top: 0px;
+    width: 3px;
+    height: 6px;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.container input:indeterminate ~ .checkmark:after {
+    width: 7px;
+    height: 5px;
+    left: 2px;
+    border: solid grey;
+    border-width: 0 0 2px 0;
+    display: block;
+}
+
+.lineIndicator {
+    height: 50%;
+    border-bottom: 1px black solid;
+    width: 8px
+}
+
+.lineIndicatorFix {
+    height: 50%;
+    margin-left: -1px;
+    width: 8px;
+}
+
+.checkboxDiv {
+    display: flex;;
+    height: 22px;
+}
+
+.innerTreeDiv {
+    margin-left: 16px;
+    border-left: 1px black solid;
+}
