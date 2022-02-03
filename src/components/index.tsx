@@ -21,9 +21,6 @@ const CheckboxForm: React.FC = ({}) => {
     localStorage.setItem("checkboxData", JSON.stringify(items))
   }, [items])
 
-  const handleSetChildren = (test: any) => {
-    setItems(generateNewItems(items, test).newArr)
-  }
   const handleSetChildrenNew = (pathToFollow: number[], check: IndeterminateCheckbox) => {
     setItems(generateNew(items, pathToFollow, check).newArr)
   }
