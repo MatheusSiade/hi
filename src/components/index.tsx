@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import importData from "../data/data.json";
-import {CheckItemType, convertObjectToArray, generateNewItems} from "./helpers";
+import {CheckItemType, convertObjectToArray, generateNew, generateNewItems, IndeterminateCheckbox} from "./helpers";
 import CheckboxTree from "./checkboxTree";
 
 
@@ -22,12 +22,14 @@ const CheckboxForm: React.FC = ({}) => {
   }, [items])
 
   const handleSetChildren = (test: any) => {
-    console.log(test);
     setItems(generateNewItems(items, test).newArr)
+  }
+  const handleSetChildrenNew = (pathToFollow: number[], check: IndeterminateCheckbox) => {
+    setItems(generateNew(items, pathToFollow, check).newArr)
   }
 
   return <form>
-      <CheckboxTree items={items} setChildren={handleSetChildren} deps={[]}/>
+      <CheckboxTree items={items} setChildren={handleSetChildrenNew} deps={[]} />
   </form>
 
 }

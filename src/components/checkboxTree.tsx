@@ -1,4 +1,4 @@
-import {CheckItemType} from "./helpers";
+import {CheckItemType, IndeterminateCheckbox} from "./helpers";
 import React from 'react';
 import Checkbox from "./checkbox";
 import styles from "../../styles/Checkbox.module.css"
@@ -6,7 +6,7 @@ import styles from "../../styles/Checkbox.module.css"
 interface CheckboxTreeProps {
   items: CheckItemType[];
 
-  setChildren?(children: any): void;
+  setChildren(pathToFollow: number[], check: IndeterminateCheckbox): void;
 
   deps: number[]
 }
@@ -35,12 +35,9 @@ const CheckboxTree: React.FC<CheckboxTreeProps> = ({items, setChildren, deps}) =
           <label className={styles.container}>
             <Checkbox
               setCheck={(check: any) => {
-                console.log([...deps, i])
-                setChildren ? setChildren({
-                  ...item,
-                  children: [],
-                  check: check
-                }) : null
+                setChildren(
+                  [...deps, i], check
+                )
               }}
               name={item.name}
               check={item.check}
@@ -51,10 +48,7 @@ const CheckboxTree: React.FC<CheckboxTreeProps> = ({items, setChildren, deps}) =
           </label>
         </div>
         {item.children.length !== 0 &&
-            <CheckboxTree items={item.children} setChildren={((i) => setChildren ? setChildren({
-              ...item,
-              children: [i]
-            }) : undefined)} deps={[...deps, i]}/>}</div>
+            <CheckboxTree items={item.children} setChildren={setChildren} deps={[...deps, i]}/>}</div>
     })}
   </React.Fragment>
 }
